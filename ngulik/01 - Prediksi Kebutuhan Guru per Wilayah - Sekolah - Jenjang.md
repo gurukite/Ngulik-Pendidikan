@@ -10,8 +10,6 @@ Dinas Pendidikan ingin memastikan distribusi guru yang optimal di seluruh wilaya
 
 Tujuan proyek ini adalah memprediksi kebutuhan guru di masa depan agar distribusi SDM lebih **efisien dan tepat sasaran**.
 
----
-
 ## 2. Data yang Dibutuhkan
 
 ### 2.1 Data Sekolah
@@ -32,8 +30,6 @@ Tujuan proyek ini adalah memprediksi kebutuhan guru di masa depan agar distribus
 * `faktor_kebijakan` : Faktor tambahan, misal prioritas pengiriman guru
 
 > Data dapat diambil dari **Dapodik**, laporan sekolah, atau sumber internal dinas.
-
----
 
 ## 3. Proses Analisis
 
@@ -63,8 +59,6 @@ Tujuan proyek ini adalah memprediksi kebutuhan guru di masa depan agar distribus
 * **Level Jenjang:** lihat kebutuhan guru SD/SMP/SMA per kecamatan.
 * **Level Wilayah:** total kebutuhan guru per kecamatan/desa → bantu alokasi SDM.
 
----
-
 ## 4. Output & Insight
 
 ### 4.1 Contoh Tabel Hasil Prediksi
@@ -81,16 +75,12 @@ Tujuan proyek ini adalah memprediksi kebutuhan guru di masa depan agar distribus
 * Mata pelajaran mana yang **sering kekurangan guru** → bisa jadi fokus rekrutmen.
 * Prediksi kebutuhan tahun depan untuk **perencanaan anggaran & SDM**.
 
----
-
 ## 5. Tools & Metode yang Disarankan
 
 * **Python / R** untuk analisis data & forecasting
 * **Pandas / Numpy** untuk pengolahan data
 * **Scikit-learn / Prophet** untuk prediksi pertumbuhan siswa
 * **Tableau / Power BI** untuk visualisasi hasil distribusi guru
-
----
 
 ## 6. Workflow Ringkas
 
