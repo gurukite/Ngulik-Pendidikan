@@ -90,3 +90,120 @@ Tujuan proyek ini adalah memprediksi kebutuhan guru di masa depan agar distribus
 4. Agregasi per sekolah, jenjang, dan kecamatan.
 5. Visualisasi → ambil insight → rekomendasi penempatan guru.
 
+## **Diagram Alur Prediksi Kebutuhan Guru**
+
+```
++------------------+
+| 1. Data Sekolah  |
+|------------------|
+| - ID Sekolah     |
+| - Nama Sekolah   |
+| - Kecamatan      |
+| - Jenjang        |
+| - Jumlah Siswa   |
+| - Jumlah Guru    |
+| - Mata Pelajaran |
++--------+---------+
+         |
+         v
++----------------------+
+| 2. Data Cleaning &   |
+|    Validasi          |
+|----------------------|
+| - Hapus duplikasi    |
+| - Cek jumlah siswa   |
+| - Cek jumlah guru    |
++--------+-------------+
+         |
+         v
++----------------------+
+| 3. Hitung Rasio      |
+|----------------------|
+| rasio_siswa_per_guru |
+| rasio_ideal_per_mapel|
++--------+-------------+
+         |
+         v
++----------------------+
+| 4. Forecasting       |
+|----------------------|
+| - Proyeksi siswa     |
+| - Kebutuhan guru     |
+|   (jumlah_guru_dibutuhkan) |
++--------+-------------+
+         |
+         v
++------------------------+
+| 5. Analisis Hierarkis  |
+|------------------------|
+| Level Sekolah           |
+| Level Jenjang           |
+| Level Kecamatan         |
++--------+---------------+
+         |
+         v
++------------------------+
+| 6. Output & Insight    |
+|------------------------|
+| - Kekurangan guru      |
+| - Prioritas penempatan |
+| - Fokus mapel tertentu |
+| - Prediksi tahun depan |
++------------------------+
+```
+
+---
+
+### 🔹 Penjelasan Diagram
+
+1. **Data Sekolah:** sumber data utama dari Dapodik atau laporan sekolah.
+2. **Data Cleaning:** memastikan data valid dan siap diproses.
+3. **Hitung Rasio:** mengetahui rasio siswa/guru saat ini dibandingkan standar ideal.
+4. **Forecasting:** prediksi kebutuhan guru berdasarkan proyeksi siswa.
+5. **Analisis Hierarkis:** bisa diturunkan sampai **per sekolah, per jenjang, atau per kecamatan**.
+6. **Output & Insight:** hasil analisis berupa rekomendasi penempatan guru dan prioritas area/mata pelajaran.
+
+
+## **1️⃣ Struktur Dataset Master**
+
+| Kolom                          | Tipe Data | Deskripsi                                                          | Contoh                                          |
+| ------------------------------ | --------- | ------------------------------------------------------------------ | ----------------------------------------------- |
+| sekolah\_id                    | string    | ID unik sekolah                                                    | SDN001                                          |
+| sekolah\_nama                  | string    | Nama sekolah                                                       | SDN 1 Kecamatan A                               |
+| kecamatan                      | string    | Nama kecamatan                                                     | Kecamatan A                                     |
+| desa                           | string    | Nama desa / kelurahan (opsional)                                   | Desa X                                          |
+| jenjang                        | enum      | Jenjang sekolah                                                    | SD / SMP / SMA / SMK                            |
+| jumlah\_siswa                  | integer   | Jumlah siswa saat ini                                              | 120                                             |
+| jumlah\_guru\_ada              | integer   | Total guru saat ini                                                | 10                                              |
+| mata\_pelajaran                | string    | Nama mapel                                                         | Matematika                                      |
+| guru\_ada\_per\_mapel          | integer   | Jumlah guru per mata pelajaran                                     | 2                                               |
+| rasio\_siswa\_per\_guru        | float     | Rasio siswa/guru saat ini                                          | 60.0                                            |
+| rasio\_siswa\_per\_guru\_ideal | float     | Rasio ideal siswa/guru                                             | 30.0                                            |
+| proyeksi\_siswa                | integer   | Prediksi jumlah siswa tahun depan                                  | 130                                             |
+| jumlah\_guru\_dibutuhkan       | integer   | Hasil prediksi kebutuhan guru                                      | 5                                               |
+| kekurangan\_guru               | integer   | kekurangan guru = jumlah\_guru\_dibutuhkan - guru\_ada\_per\_mapel | 3                                               |
+| prioritas                      | enum      | Tingkat urgensi penempatan guru                                    | Tinggi / Sedang / Rendah                        |
+| rekomendasi\_penempatan        | string    | Saran aksi                                                         | Rekrut baru / Mutasi / Pindah dari wilayah lain |
+
+
+## **2️⃣ Contoh Data (Simulasi)**
+
+| sekolah\_id | sekolah\_nama     | kecamatan   | desa   | jenjang | jumlah\_siswa | jumlah\_guru\_ada | mata\_pelajaran | guru\_ada\_per\_mapel | rasio\_siswa\_per\_guru | rasio\_siswa\_per\_guru\_ideal | proyeksi\_siswa | jumlah\_guru\_dibutuhkan | kekurangan\_guru | prioritas | rekomendasi\_penempatan |
+| ----------- | ----------------- | ----------- | ------ | ------- | ------------- | ----------------- | --------------- | --------------------- | ----------------------- | ------------------------------ | --------------- | ------------------------ | ---------------- | --------- | ----------------------- |
+| SDN001      | SDN 1 Kecamatan A | Kecamatan A | Desa X | SD      | 120           | 10                | Matematika      | 2                     | 60.0                    | 30.0                           | 130             | 5                        | 3                | Tinggi    | Rekrut baru             |
+| SDN001      | SDN 1 Kecamatan A | Kecamatan A | Desa X | SD      | 120           | 10                | IPA             | 1                     | 120.0                   | 30.0                           | 130             | 5                        | 4                | Tinggi    | Rekrut baru             |
+| SMP002      | SMP 2 Kecamatan B | Kecamatan B | Desa Y | SMP     | 200           | 8                 | Matematika      | 2                     | 100.0                   | 25.0                           | 210             | 8                        | 6                | Tinggi    | Rekrut baru             |
+| SMP002      | SMP 2 Kecamatan B | Kecamatan B | Desa Y | SMP     | 200           | 8                 | Bahasa Inggris  | 1                     | 200.0                   | 25.0                           | 210             | 8                        | 7                | Tinggi    | Rekrut baru             |
+
+
+## **3️⃣ Catatan Dataset**
+
+1. **Granularitas:** Satu baris per sekolah per mata pelajaran → memudahkan analisis per mapel.
+2. **Level Agregasi:** Bisa di-aggregate ke **jenjang atau kecamatan** menggunakan `groupby` di Python / R:
+
+   ```python
+   df.groupby(['kecamatan','jenjang']).sum()
+   ```
+3. **Forecasting:** kolom `proyeksi_siswa` bisa diisi menggunakan model prediksi pertumbuhan siswa.
+4. **Insight:** kolom `kekurangan_guru`, `prioritas`, dan `rekomendasi_penempatan` adalah hasil analisis.
+
