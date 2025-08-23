@@ -1,2 +1,2 @@
-# Ngulik-Pendidikan
+# EduAnalytics
 Ngumpulin Ide-ide terkait pendidikan
