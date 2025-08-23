@@ -6,11 +6,11 @@ Ngumpulin Ide-ide terkait ngulik data pendidikan
 
 Diharapkan : 
 
-✅ Data Real & Terpusat: Menggunakan data resmi yang sudah terintegrasi
-✅ Scalable: Dapat diterapkan dari level sekolah hingga nasional
-✅ Actionable: Hasil analisis langsung dapat diimplementasikan
-✅ Cost-Effective: Memanfaatkan data existing tanpa biaya tambahan
-✅ Policy-Driven: Mendukung pembuatan kebijakan berbasis data
+✅ **Data Real & Terpusat**: Menggunakan data resmi yang sudah terintegrasi   
+✅ **Scalable**: Dapat diterapkan dari level sekolah hingga nasional    
+✅ **Actionable**: Hasil analisis langsung dapat diimplementasikan    
+✅ **Cost-Effective**: Memanfaatkan data existing tanpa biaya tambahan   
+✅ **Policy-Driven**: Mendukung pembuatan kebijakan berbasis data   
 
 Setiap ide dirancang untuk memecahkan masalah konkret yang dihadapi didunia pendidikan dalam mengelola lingkungan pendidikan 
 dengan output yang dapat langsung diaplikasikan untuk pengambilan keputusan strategis.
