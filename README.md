@@ -29,7 +29,7 @@ Tujuan utamanya adalah menyediakan **wadah kolaborasi terbuka** agar siapa pun b
 1. Clone repo ini:
    ```bash
    git clone https://github.com/gurukite/Ngulik-Pendidikan.git
-````
+   ````
 
 2. Cek folder `data/` untuk contoh dataset.
 3. Jalankan notebook di `notebooks/` untuk eksplorasi awal.
